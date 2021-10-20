@@ -218,3 +218,4 @@ dist
 # >>> AGREGADO RAMON <<<
 __MACOSX/
 .gitignore
+.vscode

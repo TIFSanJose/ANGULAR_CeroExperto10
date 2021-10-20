@@ -54,6 +54,7 @@ export class AuthService {
 
   logout = ( ) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('tokenExp');
     
   }
 
@@ -83,6 +84,9 @@ export class AuthService {
   private guardarToken = ( idToken: string) => {
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
+
+    let hoy = new Date();
+    localStorage.setItem('tokenExp', hoy.setSeconds(3600).toString());
   }
 
   getToken = () => {
@@ -94,9 +98,18 @@ export class AuthService {
   }
 
   estaAutenticado() : boolean {
-    if(this.userToken){
-      return true;
+
+    if(!localStorage.getItem('token')){
+      return false;
+    }else{
+      let hoy = new Date();
+
+      if( Number(localStorage.getItem('tokenExp')) > hoy.setSeconds( 3600 ) ){
+        return false;
+      }else return true;
     }
+
+    
   }
 
 

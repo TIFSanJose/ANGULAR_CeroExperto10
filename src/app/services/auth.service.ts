@@ -52,8 +52,9 @@ export class AuthService {
 
   }
 
-  logout = ( usuario: UserModel ) => {
-
+  logout = ( ) => {
+      localStorage.removeItem('token');
+    
   }
 
   registro = ( usuario: UserModel ) => {
@@ -91,5 +92,13 @@ export class AuthService {
       this.userToken = '';
     }
   }
+
+  estaAutenticado() : boolean {
+    if(this.userToken){
+      return true;
+    }
+  }
+
+
 
 }

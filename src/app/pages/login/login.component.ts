@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 // import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Swal from '../../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js'
 import {  Router } from '@angular/router';
-import { isEmpty } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -47,10 +47,12 @@ export class LoginComponent implements OnInit {
       
         Swal.close();
         
-        console.log(this.recordar);
         
         if(this.recordar){
             localStorage.setItem('email', this.usuario.email);
+        }else{
+          localStorage.removeItem('email');
+          this.recordar = false;
         }
         
         console.log(this.recordar);
